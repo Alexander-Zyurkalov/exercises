@@ -1,0 +1,230 @@
+{
+  "caseId": "YR9W91GEZK24",
+  "caseStatus": {
+    "created": "2016-07-05T18:23:15+02:00",
+    "modified": "2016-07-05T18:29:00+02:00",
+    "archived": false,
+    "validUntil": "2016-10-03T18:24:02+02:00",
+    "status": "closed"
+  },
+  "orderData": {
+    "customData": {
+      "custom1": "REF_101485489",
+      "custom2": "Kampagne A357"
+    },
+    "processData": {
+      "targetCountry": "DEU",
+      "preferredLanguage": "DE_DE",
+      "webHookUrl": "https://musterbank.eu/api/pi/webhooklistener",
+      "referenceId": "YR9W91GEZK24",
+      "callbackUrlCouponRequested": {
+        "webUrl": "https://musterbank.eu/picallback/coupondownloaded.html"
+      },
+      "callbackUrlReviewPending": {
+        "webUrl": "https://musterbank.eu/picallback/reviewpending.html"
+      },
+      "callbackUrlIncomplete": {
+        "webUrl": "https://musterbank.eu/picallback/incomplete.html"
+      },
+      "callbackUrlSuccess": {
+        "webUrl": "https://musterbank.eu/picallback/success.html"
+      },
+      "callbackUrlDeclined": {
+        "webUrl": "https://musterbank.eu/picallback/declined.html"
+      }
+    },
+    "contactDataProvided": {
+      "salutation": "2",
+      "firstName": "Erika",
+      "lastName": "Mustermann",
+      "address": {
+        "city": "Köln",
+        "streetAddress": "Heidestr. 17",
+        "postalCode": "51147",
+        "country": "DEU"
+      }
+    },
+    "identificationDocumentProvided": {
+      "birthName": "Gabler",
+      "nationality": "DEU",
+      "firstName": "Erika",
+      "lastName": "Mustermann",
+      "placeOfIssue": "",
+      "countryOfDocument": "DEU",
+      "birthDate": "1964-08-12",
+      "birthPlace": "Berlin",
+      "dateIssued": "2010-11-01",
+      "dateOfExpiry": "2020-10-31",
+      "address": {
+        "city": "Köln",
+        "streetAddress": "Heidestr. 17",
+        "postalCode": "51147",
+        "country": "DEU"
+      },
+      "type": "1",
+      "authority": "Stadt Köln",
+      "number": "T01012148"
+    }
+  },
+  "contactData": {
+    "salutation": {
+      "value": "2",
+      "status": "match"
+    },
+    "title": {},
+    "firstName": {
+      "value": "Erika",
+      "status": "match"
+    },
+    "lastName": {
+      "value": "Mustermann",
+      "status": "match"
+    },
+    "mobilePhone": {
+      "value": "011111111111",
+      "status": "new"
+    },
+    "email": {
+      "value": "erika.mustermann@deutschepost.de",
+      "status": "new"
+    },
+    "epost": {},
+    "address": {
+      "city": {
+        "value": "Köln",
+        "status": "match"
+      },
+      "streetAddress": {
+        "value": "Heidestr. 17",
+        "status": "match"
+      },
+      "appendix": {},
+      "postalCode": {
+        "value": "51147",
+        "status": "match"
+      },
+      "country": {
+        "value": "DEU",
+        "status": "match"
+      }
+    }
+  },
+  "accountingData": {
+    "accountingNumber": "11235813523701",
+    "accountingProduct": "Postident Video"
+  },
+  "primaryIdent": {
+    "identificationDocument": {
+      "records": [
+        {
+          "mimeType": "image/jpeg",
+          "recordId": "63352000",
+          "belongsTo": "identificationdocument",
+          "type": "idfrontside",
+          "fileName": "YR9W91GEZK24_idfrontside.jpg"
+        },
+        {
+          "mimeType": "image/jpeg",
+          "recordId": "63352001",
+          "belongsTo": "identificationdocument",
+          "type": "idbackside",
+          "fileName": "YR9W91GEZK24_idbackside.jpg"
+        },
+        {
+          "mimeType": "image/jpeg",
+          "recordId": "63352002",
+          "belongsTo": "identificationdocument",
+          "type": "idsignature",
+          "fileName": "YR9W91GEZK24_idsignature.jpg"
+        }
+      ],
+      "birthName": {
+        "value": "Gabler",
+        "status": "match"
+      },
+      "nationality": {
+        "value": "DEU",
+        "status": "match"
+      },
+      "firstName": {
+        "value": "Erika",
+        "status": "match"
+      },
+      "lastName": {
+        "value": "Mustermann",
+        "status": "match"
+      },
+      "placeOfIssue": {
+        "value": "",
+        "status": "match"
+      },
+      "countryOfDocument": {
+        "value": "DEU",
+        "status": "match"
+      },
+      "birthDate": {
+        "value": "1964-08-12",
+        "status": "match"
+      },
+      "birthPlace": {
+        "value": "Berlin",
+        "status": "match"
+      },
+      "dateIssued": {
+        "value": "2010-11-01",
+        "status": "match"
+      },
+      "dateOfExpiry": {
+        "value": "2020-10-31",
+        "status": "match"
+      },
+      "address": {
+        "city": {
+          "value": "Köln",
+          "status": "match"
+        },
+        "streetAddress": {
+          "value": "Heidestr. 17",
+          "status": "match"
+        },
+        "appendix": {},
+        "postalCode": {
+          "value": "51147",
+          "status": "match"
+        },
+        "country": {
+          "value": "DEU",
+          "status": "match"
+        }
+      },
+      "type": {
+        "value": "1",
+        "status": "match"
+      },
+      "authority": {
+        "value": "Stadt Köln",
+        "status": "match"
+      },
+      "number": {
+        "value": "T01012148",
+        "status": "match"
+      }
+    },
+    "records": [
+      {
+        "mimeType": "image/jpeg",
+        "recordId": "63351999",
+        "belongsTo": "method",
+        "type": "userface",
+        "fileName": "YR9W91GEZK24_userface.jpg"
+      }
+    ],
+    "identificationMethod": "video",
+    "identificationStatus": {
+      "identificationTime": "2016-07-05T18:27:25+02:00",
+      "created": "2016-07-05T18:24:18+02:00",
+      "modified": "2016-07-05T18:28:50+02:00",
+      "status": "success"
+    }
+  }
+}

@@ -1,0 +1,307 @@
+@startuml
+
+title __EXERCISES's Class Diagram__\n
+
+  namespace json {
+    class json.AccountingData {
+    }
+  }
+  
+
+  namespace json {
+    class json.Address {
+    }
+  }
+  
+
+  namespace json {
+    class json.Appendix {
+    }
+  }
+  
+
+  namespace json {
+    class json.Authority {
+    }
+  }
+  
+
+  namespace json {
+    class json.BirthDate {
+    }
+  }
+  
+
+  namespace json {
+    class json.BirthName {
+    }
+  }
+  
+
+  namespace json {
+    class json.BirthPlace {
+    }
+  }
+  
+
+  namespace json {
+    class json.CallbackUrlCouponRequested {
+    }
+  }
+  
+
+  namespace json {
+    class json.CallbackUrlDeclined {
+    }
+  }
+  
+
+  namespace json {
+    class json.CallbackUrlIncomplete {
+    }
+  }
+  
+
+  namespace json {
+    class json.CallbackUrlReviewPending {
+    }
+  }
+  
+
+  namespace json {
+    class json.CallbackUrlSuccess {
+    }
+  }
+  
+
+  namespace json {
+    class json.Case {
+    }
+  }
+  
+
+  namespace json {
+    class json.CaseStatus {
+    }
+  }
+  
+
+  namespace json {
+    class json.City {
+    }
+  }
+  
+
+  namespace json {
+    class json.ContactData {
+    }
+  }
+  
+
+  namespace json {
+    class json.ContactDataProvided {
+    }
+  }
+  
+
+  namespace json {
+    class json.Country {
+    }
+  }
+  
+
+  namespace json {
+    class json.CountryOfDocument {
+    }
+  }
+  
+
+  namespace json {
+    class json.CustomData {
+    }
+  }
+  
+
+  namespace json {
+    class json.DateIssued {
+    }
+  }
+  
+
+  namespace json {
+    class json.DateOfExpiry {
+    }
+  }
+  
+
+  namespace json {
+    class json.Email {
+    }
+  }
+  
+
+  namespace json {
+    class json.Epost {
+    }
+  }
+  
+
+  namespace json {
+    class json.FirstName {
+    }
+  }
+  
+
+  namespace json {
+    class json.IdentificationDocument {
+    }
+  }
+  
+
+  namespace json {
+    class json.IdentificationDocumentProvided {
+    }
+  }
+  
+
+  namespace json {
+    class json.IdentificationStatus {
+    }
+  }
+  
+
+  namespace json {
+    class json.LastName {
+    }
+  }
+  
+
+  namespace json {
+    class json.MobilePhone {
+    }
+  }
+  
+
+  namespace json {
+    class json.Nationality {
+    }
+  }
+  
+
+  namespace json {
+    class json.Number {
+    }
+  }
+  
+
+  namespace json {
+    class json.OrderData {
+    }
+  }
+  
+
+  namespace json {
+    class json.PlaceOfIssue {
+    }
+  }
+  
+
+  namespace json {
+    class json.PostalCode {
+    }
+  }
+  
+
+  namespace json {
+    class json.PrimaryIdent {
+    }
+  }
+  
+
+  namespace json {
+    class json.ProcessData {
+    }
+  }
+  
+
+  namespace json {
+    class json.Record {
+    }
+  }
+  
+
+  namespace json {
+    class json.Salutation {
+    }
+  }
+  
+
+  namespace json {
+    class json.StreetAddress {
+    }
+  }
+  
+
+  namespace json {
+    class json.Title {
+    }
+  }
+  
+
+  namespace json {
+    class json.Type {
+    }
+  }
+  
+
+  json.Address o-- json.Appendix : appendix
+  json.Case o-- json.AccountingData : accountingData
+  json.Case o-- json.CaseStatus : caseStatus
+  json.Case o-- json.ContactData : contactData
+  json.Case o-- json.OrderData : orderData
+  json.Case o-- json.PrimaryIdent : primaryIdent
+  json.ContactData o-- json.Address : address
+  json.ContactData o-- json.Email : email
+  json.ContactData o-- json.Epost : epost
+  json.ContactData o-- json.FirstName : firstName
+  json.ContactData o-- json.LastName : lastName
+  json.ContactData o-- json.MobilePhone : mobilePhone
+  json.ContactData o-- json.Salutation : salutation
+  json.ContactData o-- json.Title : title
+  json.ContactDataProvided o-- json.Address : address
+  json.IdentificationDocument o-- json.Address : address
+  json.IdentificationDocument o-- json.Authority : authority
+  json.IdentificationDocument o-- json.BirthDate : birthDate
+  json.IdentificationDocument o-- json.BirthName : birthName
+  json.IdentificationDocument o-- json.BirthPlace : birthPlace
+  json.IdentificationDocument o-- json.CountryOfDocument : countryOfDocument
+  json.IdentificationDocument o-- json.DateIssued : dateIssued
+  json.IdentificationDocument o-- json.DateOfExpiry : dateOfExpiry
+  json.IdentificationDocument o-- json.FirstName : firstName
+  json.IdentificationDocument o-- json.LastName : lastName
+  json.IdentificationDocument o-- json.Nationality : nationality
+  json.IdentificationDocument o-- json.Number : number
+  json.IdentificationDocument o-- json.PlaceOfIssue : placeOfIssue
+  json.IdentificationDocument o-- json.Type : type
+  json.IdentificationDocumentProvided o-- json.Address : address
+  json.OrderData o-- json.ContactDataProvided : contactDataProvided
+  json.OrderData o-- json.CustomData : customData
+  json.OrderData o-- json.IdentificationDocumentProvided : identificationDocumentProvided
+  json.OrderData o-- json.ProcessData : processData
+  json.PrimaryIdent o-- json.IdentificationDocument : identificationDocument
+  json.PrimaryIdent o-- json.IdentificationStatus : identificationStatus
+  json.ProcessData o-- json.CallbackUrlCouponRequested : callbackUrlCouponRequested
+  json.ProcessData o-- json.CallbackUrlDeclined : callbackUrlDeclined
+  json.ProcessData o-- json.CallbackUrlIncomplete : callbackUrlIncomplete
+  json.ProcessData o-- json.CallbackUrlReviewPending : callbackUrlReviewPending
+  json.ProcessData o-- json.CallbackUrlSuccess : callbackUrlSuccess
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
