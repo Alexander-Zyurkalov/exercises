@@ -9,6 +9,5 @@ class MyClassTest {
     @Test
     void okF() {
         assertTrue(true);
-
     }
 }

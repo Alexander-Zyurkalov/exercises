@@ -1,10 +1,10 @@
 package json;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class MyClass {
     public int okF(int a) {
@@ -16,16 +16,13 @@ public class MyClass {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        List<String> myList = new ArrayList<>();
-        myList.add("111");
-        myList.add("12222");
-        myList.add("3333");
-        myList.add("4444");
-        myList.add("5555");
-        if (myList.size() < 5)
-            myList.remove("3333");
-        goTO(myList);
-        myList.add("666");
+        System.out.println("The default locale is: " + Locale.getDefault());
+        Locale[] locales = Locale.getAvailableLocales();
+        System.out.printf("No. of other available locales is: %d, and they are: %n",
+                locales.length);
+        Arrays.stream(locales).forEach(
+                locale -> System.out.printf("Locale code: %s and it stands for %s %n",
+                        locale, locale.getDisplayName()));
 
     }
 }
