@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class MyClass {
     public int okF(int a) {
@@ -16,13 +17,9 @@ public class MyClass {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        System.out.println("The default locale is: " + Locale.getDefault());
-        Locale[] locales = Locale.getAvailableLocales();
-        System.out.printf("No. of other available locales is: %d, and they are: %n",
-                locales.length);
-        Arrays.stream(locales).forEach(
-                locale -> System.out.printf("Locale code: %s and it stands for %s %n",
-                        locale, locale.getDisplayName()));
+        Locale currentLocale = Locale.getDefault();
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("names", currentLocale);
+        System.out.println(resourceBundle.getString("myName"));
 
     }
 }
