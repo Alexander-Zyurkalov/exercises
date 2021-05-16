@@ -24,7 +24,6 @@ public class LocalizedBoxOfficeHits {
         // print the largest box-office hit movie for Italian locale
         locale = new Locale("it", "IT", "");
         localizedHits.printMovieDetails(ResourceBundle.getBundle("ResBundle", locale));
-        ResourceBundle.getBundle("ResBundle", locale).
 
     }
 }
