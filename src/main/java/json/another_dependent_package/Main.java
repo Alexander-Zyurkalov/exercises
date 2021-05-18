@@ -3,19 +3,26 @@ package json.another_dependent_package;
 import java.util.*;
 import java.io.*;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Main {
 
-    public static Optional<String> findTag(String str) {
-        int opening = str.indexOf('<');
-        if (opening < 0) {
-            return Optional.empty();
+    public static List<String> findTag(String str) {
+        int start_pos = 0;
+        List<String> list = new ArrayList<>();
+        while(start_pos>=0 && start_pos < str.length()) {
+            int opening = str.indexOf('<', start_pos);
+            if (opening < 0) {
+                return list;
+            }
+            int closing = str.indexOf('>', opening + 1);
+            if (closing < 0) {
+                return list;
+            }
+            list.add(str.substring(opening+1, closing));
+            start_pos = closing + 1;
         }
-        int closing = str.indexOf('>', opening + 1);
-        if (closing < 0) {
-            return Optional.empty();
-        }
-        return Optional.of(str.substring(opening+1, closing));
+        return  list;
     }
 
     public static String HTMLElements(String str) {

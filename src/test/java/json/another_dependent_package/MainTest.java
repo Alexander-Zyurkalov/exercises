@@ -8,8 +8,10 @@ class MainTest {
 
     @Test
     void findTag() {
-        assertEquals("b", Main.findTag("<b>").orElse(""));
-        assertEquals("b", Main.findTag("hello<b>").orElse(""));
-        assertEquals("div", Main.findTag("hello<div><b></div>").orElse(""));
+        assertArrayEquals(new String[]{"b"}, Main.findTag("<b>").toArray());
+        assertArrayEquals(new String[]{"b"}, Main.findTag("hello<b>").toArray());
+        assertArrayEquals(
+                new String[]{"div","b","/div"},
+                Main.findTag("hello<div><b></div>").toArray());
     }
 }
