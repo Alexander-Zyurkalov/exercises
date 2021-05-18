@@ -14,4 +14,11 @@ class MainTest {
                 new String[]{"div","b","/div"},
                 Main.findTag("hello<div><b></div>").toArray());
     }
+
+    @Test
+    void HTMLElements() {
+        assertEquals("div", Main.HTMLElements("<div><div><b></b></div></p>"));
+        assertEquals("i", Main.HTMLElements("<div>abc</div><p><em><i>test test test</b></em></p>"));
+        assertEquals("true", Main.HTMLElements("<div>abc</div><p><em><i>test test test</i></em></p>"));
+    }
 }

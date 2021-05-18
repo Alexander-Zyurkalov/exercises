@@ -25,9 +25,29 @@ public class Main {
         return  list;
     }
 
+    public static boolean isOpening(String str) {
+        return str.length() > 0 && str.charAt(0) != '/';
+    }
+
     public static String HTMLElements(String str) {
         // code goes here
-        return str;
+        Stack<String> stack = new Stack<>();
+        for (var tag : findTag(str)) {
+            if (!isOpening(tag)){
+                String tagFromStack = stack.pop();
+                String closingTag = tag.substring(1);
+                if (!tagFromStack.equals(closingTag))
+                    return tagFromStack;
+            }
+            else
+                stack.push(tag);
+
+        }
+        if (stack.empty()) {
+            return "true";
+        }
+        else
+            return stack.pop();
 
     }
 
