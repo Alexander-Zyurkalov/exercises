@@ -29,37 +29,28 @@ public class Main {
         return str.length() > 0 && str.charAt(0) != '/';
     }
 
-    private int target;
-    private int[][] graph;
-    private List<List<Integer>> results;
 
-    protected void backtrack(int currNode, LinkedList<Integer> path) {
-        if (currNode == this.target) {
-            // Note: one should make a deep copy of the path
-            this.results.add(new ArrayList<Integer>(path));
-            return;
+    private List<List<Integer>> backtrack(int current, int target, int[][] graph, Deque<Integer> path) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (current == target) {
+            result.add(new ArrayList<Integer>(path));
+            return result;
         }
-        // explore the neighbor nodes one after another.
-        for (int nextNode : this.graph[currNode]) {
-            // mark the choice, before backtracking.
+        for (int nextNode: graph[current]) {
             path.addLast(nextNode);
-            this.backtrack(nextNode, path);
-            // remove the previous choice, to try the next choice
+            result.addAll(backtrack(nextNode, target, graph, path));
             path.removeLast();
         }
+        return result;
     }
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        var target = graph.length - 1;
 
-        this.target = graph.length - 1;
-        this.graph = graph;
-        this.results = new ArrayList<List<Integer>>();
-        // adopt the LinkedList for fast access to the tail element.
-        LinkedList<Integer> path = new LinkedList<Integer>();
+        LinkedList<Integer> path = new LinkedList<>();
         path.addLast(0);
-        // kick of the backtracking, starting from the source (node 0)
-        this.backtrack(0, path);
-        return this.results;
+        return backtrack(0, target, graph, path);
+
     }
 
     public static void main (String[] args) {
