@@ -29,32 +29,42 @@ public class Main {
         return str.length() > 0 && str.charAt(0) != '/';
     }
 
-    public static String HTMLElements(String str) {
-        // code goes here
-        Stack<String> stack = new Stack<>();
-        for (var tag : findTag(str)) {
-            if (!isOpening(tag)){
-                String tagFromStack = stack.pop();
-                String closingTag = tag.substring(1);
-                if (!tagFromStack.equals(closingTag))
-                    return tagFromStack;
-            }
-            else
-                stack.push(tag);
+    private int target;
+    private int[][] graph;
+    private List<List<Integer>> results;
 
+    protected void backtrack(int currNode, LinkedList<Integer> path) {
+        if (currNode == this.target) {
+            // Note: one should make a deep copy of the path
+            this.results.add(new ArrayList<Integer>(path));
+            return;
         }
-        if (stack.empty()) {
-            return "true";
+        // explore the neighbor nodes one after another.
+        for (int nextNode : this.graph[currNode]) {
+            // mark the choice, before backtracking.
+            path.addLast(nextNode);
+            this.backtrack(nextNode, path);
+            // remove the previous choice, to try the next choice
+            path.removeLast();
         }
-        else
-            return stack.pop();
+    }
 
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+
+        this.target = graph.length - 1;
+        this.graph = graph;
+        this.results = new ArrayList<List<Integer>>();
+        // adopt the LinkedList for fast access to the tail element.
+        LinkedList<Integer> path = new LinkedList<Integer>();
+        path.addLast(0);
+        // kick of the backtracking, starting from the source (node 0)
+        this.backtrack(0, path);
+        return this.results;
     }
 
     public static void main (String[] args) {
-        // keep this function call here
-        Scanner s = new Scanner(System.in);
-        System.out.print(HTMLElements(s.nextLine()));
+        int[][] graph = {{1, 2}, {3}, {3}, {}};
+        System.out.println(new Main().allPathsSourceTarget(graph));
     }
 
 }
