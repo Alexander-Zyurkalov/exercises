@@ -1,5 +1,7 @@
 package zyurkalov;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.stream.IntStream;
 
 public class NumberOfProvinces {
@@ -19,6 +21,27 @@ public class NumberOfProvinces {
                 .filter(i -> visited[i] == 0)
                 .map(i->dfs(i, visited, isConnected))
                 .sum();
+    }
+
+    public int findCircleNumBFS(int[][] isConnected) {
+        int[] visited = new int[isConnected.length];
+        int count = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < isConnected.length; i++) {
+            if (visited[i] == 0) {
+                queue.add(i);
+            }
+            while (!queue.isEmpty()) {
+                int s = queue.remove();
+                visited[s] = 1;
+                for (int j = 0; j < isConnected.length; j++) {
+                    if (isConnected[s][j] == 1 && visited[j] == 0)
+                        queue.add(j);
+                }
+            }
+            count++;
+        }
+        return count;
     }
 
     public static void main(String[] args) {
