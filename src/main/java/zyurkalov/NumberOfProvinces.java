@@ -1,5 +1,6 @@
 package zyurkalov;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.IntStream;
@@ -45,9 +46,41 @@ public class NumberOfProvinces {
         return count;
     }
 
+
+    int find(int parent[], int node) {
+        if (parent[node] == -1)
+            return node;
+        return find(parent, parent[node]);
+    }
+
+    void union(int parent[], int i, int j) {
+        int xset = find(parent, i);
+        int yset = find(parent, j);
+        if (xset != yset)
+            parent[xset] = yset;
+    }
+
+    public int findCircleNumUnion(int[][] M) {
+        int[] parent = new int[M.length];
+        Arrays.fill(parent, -1);
+        for (int i = 0; i < M.length; i++) {
+            for (int j = 0; j < M.length; j++) {
+                if (M[i][j] == 1 && i != j) {
+                    union(parent, i, j);
+                }
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < parent.length; i++) {
+            if (parent[i] == -1)
+                count++;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         System.out.println(
-                new NumberOfProvinces().findCircleNumBFS(
+                new NumberOfProvinces().findCircleNumUnion(
                         new int[][]
                                 {
                                         {1, 1, 0, 0, 0, 0},
