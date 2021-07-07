@@ -33,6 +33,7 @@ public class NumberOfProvinces {
                 while (!queue.isEmpty()) {
                     int s = queue.remove();
                     visited[s] = 1;
+                    System.out.println("Visited " + s);
                     for (int j = 0; j < isConnected.length; j++) {
                         if (isConnected[s][j] == 1 && visited[j] == 0)
                             queue.add(j);
@@ -46,7 +47,16 @@ public class NumberOfProvinces {
 
     public static void main(String[] args) {
         System.out.println(
-                new NumberOfProvinces().findCircleNumBFS(new int[][]{{1,1,0},{1,1,0},{0,0,1}})
+                new NumberOfProvinces().findCircleNumBFS(
+                        new int[][]
+                                {
+                                        {1, 1, 0, 0, 0, 0},
+                                        {1, 1, 0, 0, 0, 0},
+                                        {0, 0, 1, 1, 1, 0},
+                                        {0, 0, 1, 1, 0, 0},
+                                        {0, 0, 1, 0, 1, 0},
+                                        {0, 0, 0, 0, 0, 1}}
+                )
         );
     }
 
