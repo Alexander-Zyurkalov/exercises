@@ -3,6 +3,7 @@ package zyurkalov;
 import java.util.Arrays;
 import java.util.Comparator;
 
+
 class DisjointSet {
     private final int[] parents;
     public DisjointSet(int n) {
@@ -30,16 +31,23 @@ class DisjointSet {
     public int[] getParents() {
         return Arrays.copyOf(parents, parents.length);
     }
+
+    public boolean isInTheSameGroup(int node1, int node2) {
+        return find(node1) == find(node2);
+    }
 }
+
 
 public class ConnectingCitiesWithMinimumCost {
     private final static int NODE1 = 0;
     private final static int NODE2 = 1;
     private final static int WEIGHT = 2;
+
     public int minimumCost(int n, int[][] connections) {
         DisjointSet disjointSet = new DisjointSet(n);
         int sum = Arrays.stream(connections)
                 .sorted(Comparator.comparingInt(connection -> connection[WEIGHT]))
+                .filter(connection -> !disjointSet.isInTheSameGroup(connection[NODE1], connection[NODE2]))
                 .peek(connection -> disjointSet.union(connection[NODE1], connection[NODE2]))
                 .mapToInt(connection -> connection[WEIGHT])
                 .sum();
@@ -51,7 +59,7 @@ public class ConnectingCitiesWithMinimumCost {
         ConnectingCitiesWithMinimumCost connectingCitiesWithMinimumCost = new ConnectingCitiesWithMinimumCost();
         System.out.println(
                 connectingCitiesWithMinimumCost.minimumCost(3,
-                        new int[][]{{1,2,5},{1,3,6},{2,3,1}})
+                        new int[][]{{0,1,5},{0,2,6},{1,2,1}})
         );
     }
 }
