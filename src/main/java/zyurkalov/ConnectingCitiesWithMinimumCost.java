@@ -47,6 +47,7 @@ public class ConnectingCitiesWithMinimumCost {
         DisjointSet disjointSet = new DisjointSet(n);
         int sum = Arrays.stream(connections)
                 .sorted(Comparator.comparingInt(connection -> connection[WEIGHT]))
+                .map(connection -> new int[]{connection[NODE1]-1, connection[NODE2]-1, connection[WEIGHT]})
                 .filter(connection -> !disjointSet.isInTheSameGroup(connection[NODE1], connection[NODE2]))
                 .peek(connection -> disjointSet.union(connection[NODE1], connection[NODE2]))
                 .mapToInt(connection -> connection[WEIGHT])
@@ -59,7 +60,7 @@ public class ConnectingCitiesWithMinimumCost {
         ConnectingCitiesWithMinimumCost connectingCitiesWithMinimumCost = new ConnectingCitiesWithMinimumCost();
         System.out.println(
                 connectingCitiesWithMinimumCost.minimumCost(3,
-                        new int[][]{{0,1,5},{0,2,6},{1,2,1}})
+                        new int[][]{{1,2,5},{1,3,6},{2,3,1}})
         );
     }
 }
