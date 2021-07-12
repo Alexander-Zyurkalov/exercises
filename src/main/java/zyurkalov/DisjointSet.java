@@ -32,6 +32,7 @@ public class DisjointSet {
     }
 
     public boolean isInTheSameGroup(int node1, int node2) {
-        return find(node1) == find(node2);
+        boolean b = find(node1) == find(node2);
+        return b;
     }
 }
