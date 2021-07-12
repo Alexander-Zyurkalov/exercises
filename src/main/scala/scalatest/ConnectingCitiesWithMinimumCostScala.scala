@@ -9,16 +9,17 @@ class ConnectingCitiesWithMinimumCostScala {
 
   def minimumCost(n: Int, connections: Array[Array[Int]]): Int = {
     val disjointSet = new DisjointSet(n)
-    connections.sortWith((a,b) => a(2) < b(2))
+    connections
+      .sortWith((a,b) => a(2) < b(2))
       .map((connection: Array[Int]) => Array(connection(0) - 1, connection(1) - 1, connection(2)))
       .filter(connection => {
         val isInTheSameGroup = !disjointSet.isInTheSameGroup(connection(0), connection(1))
-        disjointSet.union(connection(0),connection(1))
+        if (isInTheSameGroup)
+          disjointSet.union(connection(0),connection(1))
         isInTheSameGroup
       })
       .map(connection => connection(2))
       .sum
-
   }
 
 }
