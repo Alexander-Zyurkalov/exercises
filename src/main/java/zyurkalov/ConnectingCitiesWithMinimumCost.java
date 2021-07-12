@@ -45,15 +45,18 @@ public class ConnectingCitiesWithMinimumCost {
 
     public int minimumCost(int n, int[][] connections) {
         DisjointSet disjointSet = new DisjointSet(n);
-        int sum = Arrays.stream(connections)
+        var summaryStatistics = Arrays.stream(connections)
                 .sorted(Comparator.comparingInt(connection -> connection[WEIGHT]))
                 .map(connection -> new int[]{connection[NODE1]-1, connection[NODE2]-1, connection[WEIGHT]})
                 .filter(connection -> !disjointSet.isInTheSameGroup(connection[NODE1], connection[NODE2]))
                 .peek(connection -> disjointSet.union(connection[NODE1], connection[NODE2]))
                 .mapToInt(connection -> connection[WEIGHT])
-                .sum();
-        return sum;
-
+                .summaryStatistics();
+        long numberOfEdges = summaryStatistics.getCount();
+        if (numberOfEdges == n - 1)
+            return (int)summaryStatistics.getSum();
+        else
+            return -1;
     }
 
     public static void main(String[] args) {
