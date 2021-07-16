@@ -8,19 +8,22 @@ public class LoudAndRich {
     private static class DFS{
         private final Map<Integer, List<Integer>> graph;
         private final int[] quiet;
-        private Deque<Integer> visited = new LinkedList<>();
+        private final Map<Integer, Integer> memoization = new HashMap<>();
 
         public DFS(final Map<Integer, List<Integer>> graph, final int[] quiet) {
             this.graph = graph;
             this.quiet = quiet;
         }
         public int dfs(int i){
+            if (memoization.containsKey(i))
+                return memoization.get(i);
             if (!graph.containsKey(i) || graph.get(i).size() == 0)
                 return i;
-            return graph.get(i).stream()
-//                    .peek(num->visited)
+            int result = graph.get(i).stream()
                     .map(this::dfs)
                     .reduce(i, (num1, num2 )-> quiet[num1] < quiet[num2] ? num1 : num2);
+            memoization.put(i, result);
+            return result;
         }
     }
 
