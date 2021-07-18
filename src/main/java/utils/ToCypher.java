@@ -6,11 +6,18 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ToCypher {
-    public static String adjacencyMapToCreateStatement( int numberOfNodes, Map<Integer, List<Integer>> graph, String nodeType, String relationType ) {
+    public static String adjacencyMapToCreateStatement(
+            int numberOfNodes, Map<Integer, List<Integer>> graph,
+            String nodeType, String relationType,
+            String attributeName, int[] attributeValues) {
         var result = new StringBuilder("CREATE\n");
         result.append(
                 IntStream.range(0, numberOfNodes)
-                        .mapToObj(intKey -> String.format("  (n%d:%s {num:%d})", intKey, nodeType, intKey))
+                        .mapToObj(
+                                intKey -> String.format(
+                                        "  (n%d:%s {num:%d, %s:%d})",
+                                        intKey, nodeType, intKey, attributeName, attributeValues[intKey])
+                        )
                         .collect(Collectors.joining(",\n"))
         );
         result.append(",\n\n");
