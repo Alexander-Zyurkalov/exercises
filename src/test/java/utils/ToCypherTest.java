@@ -2,8 +2,6 @@ package utils;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +13,7 @@ class ToCypherTest {
     void adjacencyMapToCreateStatement() {
         int[][] richer = {{1,0},{2,1},{3,1},{3,7},{4,3},{5,3},{6,3}};
         int[] values = {3,2,5,4,6,1,7,0};
-        Map<Integer, List<Integer>> graph = toAdjacencyMap.fromPairs(richer);
+        Map<Integer, List<Integer>> graph = ToAdjacencyMap.fromPairs(richer);
 
         String result = ToCypher.adjacencyMapToCreateStatement(
                 8, graph, "RichPerson", "Richer",

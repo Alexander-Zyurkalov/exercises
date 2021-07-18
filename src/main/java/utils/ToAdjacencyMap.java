@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class toAdjacencyMap {
+public class ToAdjacencyMap {
 
     public static Map<Integer, List<Integer>> fromPairs(int[][] pairs) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
