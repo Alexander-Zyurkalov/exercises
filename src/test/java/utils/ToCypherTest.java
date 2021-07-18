@@ -21,7 +21,7 @@ class ToCypherTest {
             graph.get(i).add(ints[0]);
         }
 
-        String result = ToCypher.adjacencyMapToCreateStatement(8, graph, "RichPerson");
+        String result = ToCypher.adjacencyMapToCreateStatement(8, graph, "RichPerson", "Richer");
         String expected =
                 "CREATE\n" +
                 "  (n0:RichPerson {num:0}),\n" +
@@ -31,7 +31,18 @@ class ToCypherTest {
                 "  (n4:RichPerson {num:4}),\n" +
                 "  (n5:RichPerson {num:5}),\n" +
                 "  (n6:RichPerson {num:6}),\n" +
-                "  (n7:RichPerson {num:7})";
+                "  (n7:RichPerson {num:7}),\n" +
+                "\n" +
+                "  (n0) -[:Richer]-> (n1),\n" +
+                "  (n1) -[:Richer]-> (n2),\n" +
+                "  (n1) -[:Richer]-> (n3),\n" +
+                "  (n3) -[:Richer]-> (n4),\n" +
+                "  (n3) -[:Richer]-> (n5),\n" +
+                "  (n3) -[:Richer]-> (n6),\n" +
+                "  (n7) -[:Richer]-> (n3)" +
+                "\n" +
+                "return n0, n1, n2, n3, n4, n5, n6, n7;\n";
+
         assertEquals(expected, result);
     }
 }
