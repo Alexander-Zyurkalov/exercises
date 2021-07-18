@@ -14,12 +14,7 @@ class ToCypherTest {
     @Test
     void adjacencyMapToCreateStatement() {
         int[][] richer = {{1,0},{2,1},{3,1},{3,7},{4,3},{5,3},{6,3}};
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        for (int[] ints : richer) {
-            int i = ints[1];
-            graph.putIfAbsent(i, new ArrayList<>());
-            graph.get(i).add(ints[0]);
-        }
+        Map<Integer, List<Integer>> graph = toAdjacencyMap.fromPairs(richer);
 
         String result = ToCypher.adjacencyMapToCreateStatement(8, graph, "RichPerson", "Richer");
         String expected =
