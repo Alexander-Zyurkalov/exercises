@@ -1,5 +1,7 @@
 package zyurkalov;
 
+import utils.ToCypher;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
