@@ -24,7 +24,7 @@ create
 return n0, n1, n2, n3, n4, n5, n6, n7;
 
 
-MATCH path=(  (n1:RichPerson) -[:Richer*0..]-> (n2)  )
+MATCH path=(  (n1:VeryRich) -[:MuchRicher*0..]-> (n2)  )
 WITH
   n1,
   reduce(
