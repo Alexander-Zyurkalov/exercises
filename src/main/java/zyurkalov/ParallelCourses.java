@@ -43,10 +43,9 @@ public class ParallelCourses {
         else if (nodeStates[i - 1] == NodeState.PROCESSING)
             throw new LoopException();
         nodeStates[i-1] = NodeState.PROCESSING;
-        int the_max_length =  relationMap.get(i).stream()
+        int the_max_length = relationMap.get(i).stream()
                 .peek(num -> dfs(num, relationMap))
-                .max(Comparator.comparingInt(num -> num ))
-                .orElse(i);
+                .reduce(i, (n1, n2) -> n1 > n2 ? n1 : n2);
         nodesOrder[i-1] = the_max_length;
         nodeStates[i-1] = NodeState.DONE;
         return the_max_length;
