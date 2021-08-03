@@ -7,29 +7,48 @@ import utils.ToAdjacencyMap;
 import java.util.Arrays;
 import java.util.Comparator;
 
+
+class LoopException extends RuntimeException { }
+
+enum NodeState {
+    UNTOUCHED,
+    PROCESSING,
+    DONE
+}
+
 public class ParallelCourses {
-    int[] nodes_order;
+    int[] nodesOrder;
+    NodeState[] nodeStates;
 
     public int minimumSemesters(int n, int[][] relations) {
-        nodes_order = new int[n];
-        Arrays.fill(nodes_order, -1);
+        nodesOrder = new int[n];
+        nodeStates = new NodeState[n];
+        Arrays.fill(nodesOrder, -1);
+        Arrays.fill(nodeStates, NodeState.UNTOUCHED);
 
         AdjacencyMap relationMap = ToAdjacencyMap.parentMapFromPairs(relations);
         for (int i = 1; i <= n; i++) {
-            dfs(i, relationMap);
+            try {
+                dfs(i, relationMap);
+            } catch (LoopException e) {
+                return -1;
+            }
         }
-        return (int)Arrays.stream(nodes_order).filter(val -> val >= 0).distinct().count();
+        return (int)Arrays.stream(nodesOrder).filter(val -> val >= 0).distinct().count();
     }
 
-    private int dfs(int i, AdjacencyMap relationMap) {
-        if (relationMap.get(i).size() == 0) {
-            nodes_order[i-1] = i;
-            return i;
-        }
+    private int dfs(int i, AdjacencyMap relationMap) throws LoopException {
+        if (nodeStates[i - 1] == NodeState.DONE)
+            return nodesOrder[i - 1];
+        else if (nodeStates[i - 1] == NodeState.PROCESSING)
+            throw new LoopException();
+        nodeStates[i-1] = NodeState.PROCESSING;
         int the_max_length =  relationMap.get(i).stream()
-                .max(Comparator.comparingInt(num -> dfs(num, relationMap)))
-                .orElse(-1);
-        nodes_order[i-1] = the_max_length;
+                .peek(num -> dfs(num, relationMap))
+                .max(Comparator.comparingInt(num -> num ))
+                .orElse(i);
+        nodesOrder[i-1] = the_max_length;
+        nodeStates[i-1] = NodeState.DONE;
         return the_max_length;
     }
 
