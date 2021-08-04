@@ -2,7 +2,7 @@ package zyurkalov;
 
 import java.util.Arrays;
 
-public class IdealoChallenge {
+public class CodityDemo {
 
     public int solution(int[] A) {
         int[] array = Arrays.stream(A).filter(a -> a > 0).sorted().toArray();
@@ -14,6 +14,6 @@ public class IdealoChallenge {
     }
 
     public static void main(String[] args) {
-        System.out.println(new IdealoChallenge().solution(new int[]{1, 2, 3}));
+        System.out.println(new CodityDemo().solution(new int[]{1, 2, 3}));
     }
 }
