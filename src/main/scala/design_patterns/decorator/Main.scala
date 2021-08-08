@@ -3,10 +3,10 @@ package design_patterns.decorator
 object Main extends App {
   val salaryRecords: String = "Name,Salary\nJohn Smith,100000\nSteven Jobs,912000"
   println(salaryRecords)
-  val encoded:DataSource = new CompressionDecorator(
-//    new EncryptionDecorator(
-      new FileDataSource("out/OutputDemo.txt")
-//    )
+  val encoded:DataSource = CompressionDecorator(
+    EncryptionDecorator(
+      FileDataSource("out/OutputDemo.txt")
+    )
   )
   encoded.writeData(data = salaryRecords)
   val plain: DataSource = new FileDataSource("out/OutputDemo.txt")

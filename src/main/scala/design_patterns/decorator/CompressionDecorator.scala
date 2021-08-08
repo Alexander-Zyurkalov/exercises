@@ -10,13 +10,9 @@ case class CompressionDecorator(wrappe: DataSource) extends DataSourceDecorator(
   override def readData: String = decompress(super.readData)
 
 
-  import java.io.ByteArrayInputStream
-  import java.io.IOException
-  import java.io.InputStream
+  import java.io.{ByteArrayInputStream, IOException}
   import java.util.Base64
-  import java.util.zip.Deflater
-  import java.util.zip.DeflaterOutputStream
-  import java.util.zip.InflaterInputStream
+  import java.util.zip.{Deflater, DeflaterOutputStream, InflaterInputStream}
 
   private val compLevel: Int = 6
 
