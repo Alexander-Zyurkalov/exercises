@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="Maven 1" modules="exercises,neo4j-extentions" />
+    <profile name="Maven 1" modules="exercises,neo4j-extensions,neo4j-extentions" />
   </component>
 </project>
