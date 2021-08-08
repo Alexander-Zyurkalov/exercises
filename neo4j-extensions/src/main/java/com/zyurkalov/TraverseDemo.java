@@ -56,8 +56,8 @@ public class TraverseDemo {
 
         return StreamSupport
                 .stream(traverse.spliterator(), false)
-                .map(Path::endNode)
-                .map(CoActorRecord::new);
+                .map((Path p) -> p.endNode())
+                .map(node -> new CoActorRecord(node));
     }
 
     /**
