@@ -3,6 +3,8 @@ package zyurkalov.challenges;
 import java.util.HashMap;
 import java.util.Map;
 
+// find the shortest unique sequence
+
 public class IdealoChallenge1 {
 
     public int solution(String S) {
