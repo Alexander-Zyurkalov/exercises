@@ -1,0 +1,14 @@
+GET http://localhost:8080/record?id=1
+Accept: application/json
+
+###
+POST http://localhost:8080/record
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "test",
+  "data": "this is my data"
+}
+
+###
