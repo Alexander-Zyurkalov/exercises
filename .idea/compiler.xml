@@ -14,4 +14,10 @@
       <module name="neo4j-extentions" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="exercises" options="-parameters" />
+      <module name="neo4j-extensions" options="-parameters" />
+    </option>
+  </component>
 </project>
