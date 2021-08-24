@@ -1,4 +1,4 @@
-package zyurkalov;
+package zyurkalov.the_programmers_brain;
 
 import java.util.function.Predicate;
 
