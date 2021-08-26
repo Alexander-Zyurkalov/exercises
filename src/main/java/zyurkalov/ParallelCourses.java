@@ -5,7 +5,7 @@ import utils.AdjacencyMap;
 import utils.ToAdjacencyMap;
 
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.stream.Collectors;
 
 
 class LoopException extends RuntimeException { }
@@ -26,8 +26,14 @@ public class ParallelCourses {
         Arrays.fill(nodesOrder, -1);
         Arrays.fill(nodeStates, NodeState.UNTOUCHED);
 
-        AdjacencyMap relationMap = ToAdjacencyMap.parentMapFromPairs(relations);
-        for (int i = 1; i <= n; i++) {
+        AdjacencyMap relationMap = ToAdjacencyMap.parentMapFromPairs(
+                Arrays.stream(relations)
+                        .map(
+                                value -> new int[]{value[0] - 1, value[1] - 1}
+                        )
+                        .collect(Collectors.toList())
+                        .toArray(new int[][]{}));
+        for (int i = 0; i < n; i++) {
             try {
                 dfs(i, relationMap);
             } catch (LoopException e) {
@@ -37,17 +43,21 @@ public class ParallelCourses {
         return (int)Arrays.stream(nodesOrder).filter(val -> val >= 0).distinct().count();
     }
 
-    private int dfs(int i, AdjacencyMap relationMap) throws LoopException {
-        if (nodeStates[i - 1] == NodeState.DONE)
-            return nodesOrder[i - 1];
-        else if (nodeStates[i - 1] == NodeState.PROCESSING)
+
+    private void dfs(final int i, final AdjacencyMap relationMap) throws LoopException {
+        dfs(i, relationMap, 0);
+    }
+    private int dfs(final int i, final AdjacencyMap relationMap, final int depth) throws LoopException {
+        if (nodeStates[i] == NodeState.DONE)
+            return nodesOrder[i];
+        else if (nodeStates[i] == NodeState.PROCESSING)
             throw new LoopException();
-        nodeStates[i-1] = NodeState.PROCESSING;
+        nodeStates[i] = NodeState.PROCESSING;
         int the_max_length = relationMap.get(i).stream()
-                .peek(num -> dfs(num, relationMap))
-                .reduce(i, (n1, n2) -> n1 > n2 ? n1 : n2);
-        nodesOrder[i-1] = the_max_length;
-        nodeStates[i-1] = NodeState.DONE;
+                .peek(num -> dfs(num, relationMap, depth + 1))
+                .reduce(depth, (n1, n2) -> n1 > n2 ? n1 : n2);
+        nodesOrder[i] = the_max_length;
+        nodeStates[i] = NodeState.DONE;
         return the_max_length;
     }
 
