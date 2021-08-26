@@ -5,7 +5,7 @@ public class App {
     private static final int HEIGHT = 5;
 
     private static char[][] lines;
-    static {
+    static { // just fill in with *
         lines = new char[HEIGHT][WIDTH];
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
@@ -14,6 +14,7 @@ public class App {
         }
     }
 
+    // replace * with ' ' in needed places, and this is recursive
     private static void show(int start, int len, int index) {
         int seg = len / 3;
         if (seg == 0) return;
@@ -28,6 +29,8 @@ public class App {
 
     public static void main(String[] args) {
         show (0, WIDTH, 1);
+
+        // just prints everything from lines
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 System.out.print(lines[i][j]);
