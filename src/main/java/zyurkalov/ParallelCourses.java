@@ -54,7 +54,7 @@ public class ParallelCourses {
             throw new LoopException();
         nodeStates[i] = NodeState.PROCESSING;
         int the_max_length = relationMap.get(i).stream()
-                .peek(num -> dfs(num, relationMap, depth + 1))
+                .map(num -> dfs(num, relationMap, depth + 1) + 1)
                 .reduce(depth, (n1, n2) -> n1 > n2 ? n1 : n2);
         nodesOrder[i] = the_max_length;
         nodeStates[i] = NodeState.DONE;
