@@ -24,12 +24,17 @@ public class NumberOfProvinces {
                 .sum();
     }
 
+    // it finds number of clusters of connected nodes by counting not visited nodes at the high level of the
+    // algorithm.
+    // 1 - 2       4 - 5 - 6
+    //  \      +    \          = 2
+    //    3          7
     public int findCircleNumBFS(int[][] isConnected) {
         int[] visited = new int[isConnected.length];
         int count = 0;
         Queue < Integer > queue = new LinkedList < > ();
         for (int i = 0; i < isConnected.length; i++) {
-            if (visited[i] == 0) {
+            if (visited[i] == 0) { // here we count not visited nodes because in while-loop we will visit all connected
                 queue.add(i);
                 while (!queue.isEmpty()) {
                     int s = queue.remove();
