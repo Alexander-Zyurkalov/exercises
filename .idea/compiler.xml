@@ -7,10 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="neo4j-extensions" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="neo4j-extensions" target="11" />
       <module name="neo4j-extentions" target="11" />
     </bytecodeTargetLevel>
   </component>
