@@ -10,18 +10,24 @@ import static java.util.stream.Collectors.toList;
 
 public class ParallelCoursesBFSSolution {
     public int minimumSemesters(int N, int[][] relations) {
-        AdjacencyMap graph = ToAdjacencyMap.fromPairs(relations);
+        List<List<Integer>> graph = new ArrayList<>(N + 1);
+        for (int i = 0; i <= N; i++) {
+            graph.add(new ArrayList<>());
+        }
+        for (int[] relation : relations) {
+            graph.get(relation[0]).add(relation[1]);
+        }
         int[] nodeIndegrees = calculateNodeIndegrees(N, relations);
         int semestrCounter = 0;
         int courseCounter = 0;
         List<Integer> courseQueue = findCoursesWithNoDependencies(nodeIndegrees);
         while (!courseQueue.isEmpty()) {
-            semestrCounter ++;
+            semestrCounter++;
             List<Integer> nextCourseQueue = new ArrayList<>();
             for (int course : courseQueue) {
                 courseCounter++;
                 for (int subCourse : graph.get(course)) {
-                    nodeIndegrees[subCourse] --;
+                    nodeIndegrees[subCourse]--;
                     if (nodeIndegrees[subCourse] == 0) {
                         nextCourseQueue.add(subCourse);
                     }
@@ -29,7 +35,6 @@ public class ParallelCoursesBFSSolution {
             }
             courseQueue = nextCourseQueue;
         }
-
         return courseCounter == N ? semestrCounter : -1;
     }
 
@@ -39,7 +44,7 @@ public class ParallelCoursesBFSSolution {
 
 
     private int[] calculateNodeIndegrees(int n, int[][] relations) {
-        int[] result = new int[n+1];
+        int[] result = new int[n + 1];
         for (int[] relation : relations) {
             result[relation[1]]++;
         }
