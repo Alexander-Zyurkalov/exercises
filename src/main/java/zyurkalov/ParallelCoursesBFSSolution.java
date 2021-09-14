@@ -20,8 +20,12 @@ public class ParallelCoursesBFSSolution {
             List<Integer> nextCourseQueue = new ArrayList<>();
             for (int course : courseQueue) {
                 courseCounter++;
-                nodeIndegrees[course] --;
-                nextCourseQueue.addAll(findCoursesWithNoDependencies(nodeIndegrees));
+                for (int subCourse : graph.get(course)) {
+                    nodeIndegrees[subCourse] --;
+                    if (nodeIndegrees[subCourse] == 0) {
+                        nextCourseQueue.add(subCourse);
+                    }
+                }
             }
             courseQueue = nextCourseQueue;
         }
