@@ -5,16 +5,16 @@ import java.util.List;
 
 public class ParallelCoursesDFSSolution {
     public int minimumSemesters(int N, int[][] relations) {
-        List<List<Integer>> graph = new ArrayList<>(N + 1); // graph is an organiser
+        List<List<Integer>> graph = new ArrayList<>(N + 1); // graph is an organiser 🗄
         for (int i = 0; i < N + 1; ++i) {
             graph.add(new ArrayList<>());
         }
-        for (int[] relation : relations) { // relation is a stepper
+        for (int[] relation : relations) { // relation is a stepper 🪜
             graph.get(relation[0]).add(relation[1]);
         }
         // check if the graph contains a cycle
-        int[] visitStatus = new int[N + 1]; // visitStatus is a flag
-        for (int node = 1; node < N + 1; node++) { // node is a stepper
+        int[] visitStatus = new int[N + 1]; // visitStatus is a flag 🏳️
+        for (int node = 1; node < N + 1; node++) { // node is a stepper 🪜
             // if has cycle, return -1
             if (dfsCheckCycle(node, graph, visitStatus) == -1) {
                 return -1;
@@ -22,11 +22,11 @@ public class ParallelCoursesDFSSolution {
         }
 
         // if no cycle, return the longest path
-        int[] visitedLength = new int[N + 1];
-        int maxLength = 1; // maxLength is a MostWantedHolder
-        for (int node = 1; node < N + 1; node++) { // node is a stepper
+        int[] visitedLength = new int[N + 1]; // 🏳️
+        int maxLength = 1; // maxLength is a  💎
+        for (int node = 1; node < N + 1; node++) { // node is a 🪜
             int length = dfsMaxPath(node, graph, visitedLength);
-            maxLength = Math.max(length, maxLength);
+            maxLength/*💎*/ = Math.max(length, maxLength);
         }
         return maxLength;
     }
