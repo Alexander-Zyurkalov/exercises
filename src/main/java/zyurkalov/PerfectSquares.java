@@ -1,5 +1,9 @@
 package zyurkalov;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 /*
 https://leetcode.com/problems/perfect-squares/
 Given an integer n, return the least number of perfect square numbers that sum to n.
@@ -23,10 +27,24 @@ Explanation: 13 = 4 + 9.
 public class PerfectSquares {
 
     public int numSquares(int n) {
-        return 0;
+        int[] squares = IntStream.iterate(1, num -> num < (Math.sqrt(n)) + 1, num -> num + 1).map(num -> num * num).toArray();
+        if (Arrays.binarySearch(squares, n) > 0 || n <= 1)
+            return 1;
+        int minNum = Integer.MAX_VALUE;
+        for (int square: squares) {
+            if (square > n)
+                break;
+            int newNum = numSquares(n-square) + 1;
+            minNum = Integer.min(minNum, newNum);
+        }
+        return minNum;
     }
 
     public static void main(String[] args) {
+        System.out.println(new PerfectSquares().numSquares(1) == 1);
+        System.out.println(new PerfectSquares().numSquares(16) == 1);
         System.out.println(new PerfectSquares().numSquares(12) == 3);
+        System.out.println(new PerfectSquares().numSquares(13) == 2);
+        System.out.println(new PerfectSquares().numSquares(0) == 1);
     }
 }
